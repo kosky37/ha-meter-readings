@@ -29,8 +29,8 @@
   "options": {
     "step": {
       "init": {
-        "title": "{name}",
-        "description": "Ostatni odczyt: {latest}. Zapisanych odczytów: {count}.\n\nAktualna cena: {price}.",
+        "title": "Odczyty licznika",
+        "description": "**{name}**\n\nOstatni odczyt: {latest}. Zapisanych odczytów: {count}.\n\nAktualna cena: {price}.",
         "menu_options": {
           "add_reading": "Dodaj odczyt",
           "edit_reading": "Popraw lub usuń odczyt",
@@ -129,14 +129,26 @@
   },
   "entity": {
     "sensor": {
-      "last_reading": { "name": "Ostatni odczyt" },
-      "unit_price": { "name": "Cena jednostkowa" },
-      "total_cost": { "name": "Koszt łącznie" }
+      "last_reading": {
+        "name": "Ostatni odczyt"
+      },
+      "unit_price": {
+        "name": "Cena jednostkowa"
+      },
+      "total_cost": {
+        "name": "Koszt łącznie"
+      }
     },
     "number": {
-      "new_reading": { "name": "Nowy odczyt" },
-      "price": { "name": "Cena" },
-      "factor": { "name": "Współczynnik konwersji" }
+      "new_reading": {
+        "name": "Nowy odczyt"
+      },
+      "price": {
+        "name": "Cena"
+      },
+      "factor": {
+        "name": "Współczynnik konwersji"
+      }
     }
   },
   "services": {
@@ -144,68 +156,128 @@
       "name": "Dodaj odczyt",
       "description": "Zapisuje odczyt licznika. Bez daty używany jest bieżący czas.",
       "fields": {
-        "meter": { "name": "Licznik", "description": "Sensor licznika." },
-        "value": { "name": "Wartość", "description": "Stan widoczny na liczniku." },
-        "timestamp": { "name": "Data", "description": "Kiedy odczytano licznik." }
+        "meter": {
+          "name": "Licznik",
+          "description": "Sensor licznika."
+        },
+        "value": {
+          "name": "Wartość",
+          "description": "Stan widoczny na liczniku."
+        },
+        "timestamp": {
+          "name": "Data",
+          "description": "Kiedy odczytano licznik."
+        }
       }
     },
     "import_readings": {
       "name": "Importuj odczyty",
       "description": "Importuje wiele odczytów naraz, po jednym w wierszu jako data[ godzina], wartość.",
       "fields": {
-        "meter": { "name": "Licznik", "description": "Sensor licznika." },
-        "readings": { "name": "Odczyty", "description": "Wiersze w rodzaju 2025-01-15 08:30, 1234.567." },
-        "replace": { "name": "Zastąp", "description": "Najpierw usuń wszystkie istniejące odczyty." }
+        "meter": {
+          "name": "Licznik",
+          "description": "Sensor licznika."
+        },
+        "readings": {
+          "name": "Odczyty",
+          "description": "Wiersze w rodzaju 2025-01-15 08:30, 1234.567."
+        },
+        "replace": {
+          "name": "Zastąp",
+          "description": "Najpierw usuń wszystkie istniejące odczyty."
+        }
       }
     },
     "update_reading": {
       "name": "Popraw odczyt",
       "description": "Zmienia wartość lub datę istniejącego odczytu.",
       "fields": {
-        "meter": { "name": "Licznik", "description": "Sensor licznika." },
-        "timestamp": { "name": "Data", "description": "Data i godzina odczytu do zmiany, z dokładnością do minuty." },
-        "value": { "name": "Nowa wartość", "description": "Poprawiona wartość." },
-        "new_timestamp": { "name": "Nowa data", "description": "Poprawiona data i godzina." }
+        "meter": {
+          "name": "Licznik",
+          "description": "Sensor licznika."
+        },
+        "timestamp": {
+          "name": "Data",
+          "description": "Data i godzina odczytu do zmiany, z dokładnością do minuty."
+        },
+        "value": {
+          "name": "Nowa wartość",
+          "description": "Poprawiona wartość."
+        },
+        "new_timestamp": {
+          "name": "Nowa data",
+          "description": "Poprawiona data i godzina."
+        }
       }
     },
     "delete_reading": {
       "name": "Usuń odczyt",
       "description": "Usuwa odczyt.",
       "fields": {
-        "meter": { "name": "Licznik", "description": "Sensor licznika." },
-        "timestamp": { "name": "Data", "description": "Data i godzina odczytu do usunięcia, z dokładnością do minuty." }
+        "meter": {
+          "name": "Licznik",
+          "description": "Sensor licznika."
+        },
+        "timestamp": {
+          "name": "Data",
+          "description": "Data i godzina odczytu do usunięcia, z dokładnością do minuty."
+        }
       }
     },
     "set_price": {
       "name": "Ustaw cenę",
       "description": "Ustawia cenę od podanej daty. Cena z tą samą datą zostaje zastąpiona.",
       "fields": {
-        "meter": { "name": "Licznik", "description": "Sensor licznika." },
-        "price": { "name": "Cena", "description": "Cena za jednostkę licznika albo za kWh dla liczników rozliczanych za kWh. Domyślnie poprzednia cena." },
-        "factor": { "name": "Współczynnik konwersji", "description": "kWh na jednostkę licznika, tylko dla liczników rozliczanych za kWh. Domyślnie poprzedni współczynnik." },
-        "valid_from": { "name": "Obowiązuje od", "description": "Od kiedy cena obowiązuje. Domyślnie teraz." }
+        "meter": {
+          "name": "Licznik",
+          "description": "Sensor licznika."
+        },
+        "price": {
+          "name": "Cena",
+          "description": "Cena za jednostkę licznika albo za kWh dla liczników rozliczanych za kWh. Domyślnie poprzednia cena."
+        },
+        "factor": {
+          "name": "Współczynnik konwersji",
+          "description": "kWh na jednostkę licznika, tylko dla liczników rozliczanych za kWh. Domyślnie poprzedni współczynnik."
+        },
+        "valid_from": {
+          "name": "Obowiązuje od",
+          "description": "Od kiedy cena obowiązuje. Domyślnie teraz."
+        }
       }
     },
     "delete_price": {
       "name": "Usuń cenę",
       "description": "Usuwa cenę.",
       "fields": {
-        "meter": { "name": "Licznik", "description": "Sensor licznika." },
-        "valid_from": { "name": "Obowiązuje od", "description": "Data początku ceny do usunięcia, z dokładnością do minuty." }
+        "meter": {
+          "name": "Licznik",
+          "description": "Sensor licznika."
+        },
+        "valid_from": {
+          "name": "Obowiązuje od",
+          "description": "Data początku ceny do usunięcia, z dokładnością do minuty."
+        }
       }
     },
     "get_readings": {
       "name": "Pobierz odczyty",
       "description": "Zwraca wszystkie zapisane odczyty i ceny licznika.",
       "fields": {
-        "meter": { "name": "Licznik", "description": "Sensor licznika." }
+        "meter": {
+          "name": "Licznik",
+          "description": "Sensor licznika."
+        }
       }
     },
     "rebuild_statistics": {
       "name": "Odbuduj statystyki",
       "description": "Tworzy na nowo statystyki zużycia i kosztów licznika na podstawie zapisanych odczytów i cen.",
       "fields": {
-        "meter": { "name": "Licznik", "description": "Sensor licznika." }
+        "meter": {
+          "name": "Licznik",
+          "description": "Sensor licznika."
+        }
       }
     }
   }

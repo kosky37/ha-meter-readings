@@ -29,8 +29,8 @@
   "options": {
     "step": {
       "init": {
-        "title": "{name}",
-        "description": "Latest reading: {latest}. Stored readings: {count}.\n\nCurrent price: {price}.",
+        "title": "Meter readings",
+        "description": "**{name}**\n\nLatest reading: {latest}. Stored readings: {count}.\n\nCurrent price: {price}.",
         "menu_options": {
           "add_reading": "Add a reading",
           "edit_reading": "Correct or delete a reading",
@@ -129,14 +129,26 @@
   },
   "entity": {
     "sensor": {
-      "last_reading": { "name": "Last reading" },
-      "unit_price": { "name": "Unit price" },
-      "total_cost": { "name": "Total cost" }
+      "last_reading": {
+        "name": "Last reading"
+      },
+      "unit_price": {
+        "name": "Unit price"
+      },
+      "total_cost": {
+        "name": "Total cost"
+      }
     },
     "number": {
-      "new_reading": { "name": "New reading" },
-      "price": { "name": "Price" },
-      "factor": { "name": "Conversion factor" }
+      "new_reading": {
+        "name": "New reading"
+      },
+      "price": {
+        "name": "Price"
+      },
+      "factor": {
+        "name": "Conversion factor"
+      }
     }
   },
   "services": {
@@ -144,68 +156,128 @@
       "name": "Add reading",
       "description": "Records a meter reading. Without a timestamp the current time is used.",
       "fields": {
-        "meter": { "name": "Meter", "description": "The meter sensor." },
-        "value": { "name": "Value", "description": "The value shown on the meter." },
-        "timestamp": { "name": "Timestamp", "description": "When the meter was read." }
+        "meter": {
+          "name": "Meter",
+          "description": "The meter sensor."
+        },
+        "value": {
+          "name": "Value",
+          "description": "The value shown on the meter."
+        },
+        "timestamp": {
+          "name": "Timestamp",
+          "description": "When the meter was read."
+        }
       }
     },
     "import_readings": {
       "name": "Import readings",
       "description": "Imports many readings at once, one per line as date[ time], value.",
       "fields": {
-        "meter": { "name": "Meter", "description": "The meter sensor." },
-        "readings": { "name": "Readings", "description": "Lines like 2025-01-15 08:30, 1234.567." },
-        "replace": { "name": "Replace", "description": "Delete all existing readings first." }
+        "meter": {
+          "name": "Meter",
+          "description": "The meter sensor."
+        },
+        "readings": {
+          "name": "Readings",
+          "description": "Lines like 2025-01-15 08:30, 1234.567."
+        },
+        "replace": {
+          "name": "Replace",
+          "description": "Delete all existing readings first."
+        }
       }
     },
     "update_reading": {
       "name": "Correct reading",
       "description": "Changes the value or time of an existing reading.",
       "fields": {
-        "meter": { "name": "Meter", "description": "The meter sensor." },
-        "timestamp": { "name": "Timestamp", "description": "Date and time of the reading to change, to the minute." },
-        "value": { "name": "New value", "description": "The corrected value." },
-        "new_timestamp": { "name": "New timestamp", "description": "The corrected date and time." }
+        "meter": {
+          "name": "Meter",
+          "description": "The meter sensor."
+        },
+        "timestamp": {
+          "name": "Timestamp",
+          "description": "Date and time of the reading to change, to the minute."
+        },
+        "value": {
+          "name": "New value",
+          "description": "The corrected value."
+        },
+        "new_timestamp": {
+          "name": "New timestamp",
+          "description": "The corrected date and time."
+        }
       }
     },
     "delete_reading": {
       "name": "Delete reading",
       "description": "Removes a reading.",
       "fields": {
-        "meter": { "name": "Meter", "description": "The meter sensor." },
-        "timestamp": { "name": "Timestamp", "description": "Date and time of the reading to delete, to the minute." }
+        "meter": {
+          "name": "Meter",
+          "description": "The meter sensor."
+        },
+        "timestamp": {
+          "name": "Timestamp",
+          "description": "Date and time of the reading to delete, to the minute."
+        }
       }
     },
     "set_price": {
       "name": "Set price",
       "description": "Sets the price from a given date. A price with the same date is replaced.",
       "fields": {
-        "meter": { "name": "Meter", "description": "The meter sensor." },
-        "price": { "name": "Price", "description": "Price per meter unit, or per kWh for meters priced per kWh. Defaults to the previous price." },
-        "factor": { "name": "Conversion factor", "description": "kWh per meter unit, only for meters priced per kWh. Defaults to the previous factor." },
-        "valid_from": { "name": "Valid from", "description": "When the price starts to apply. Defaults to now." }
+        "meter": {
+          "name": "Meter",
+          "description": "The meter sensor."
+        },
+        "price": {
+          "name": "Price",
+          "description": "Price per meter unit, or per kWh for meters priced per kWh. Defaults to the previous price."
+        },
+        "factor": {
+          "name": "Conversion factor",
+          "description": "kWh per meter unit, only for meters priced per kWh. Defaults to the previous factor."
+        },
+        "valid_from": {
+          "name": "Valid from",
+          "description": "When the price starts to apply. Defaults to now."
+        }
       }
     },
     "delete_price": {
       "name": "Delete price",
       "description": "Removes a price.",
       "fields": {
-        "meter": { "name": "Meter", "description": "The meter sensor." },
-        "valid_from": { "name": "Valid from", "description": "Start date of the price to delete, to the minute." }
+        "meter": {
+          "name": "Meter",
+          "description": "The meter sensor."
+        },
+        "valid_from": {
+          "name": "Valid from",
+          "description": "Start date of the price to delete, to the minute."
+        }
       }
     },
     "get_readings": {
       "name": "Get readings",
       "description": "Returns all stored readings and prices of a meter.",
       "fields": {
-        "meter": { "name": "Meter", "description": "The meter sensor." }
+        "meter": {
+          "name": "Meter",
+          "description": "The meter sensor."
+        }
       }
     },
     "rebuild_statistics": {
       "name": "Rebuild statistics",
       "description": "Recreates the long-term consumption and cost statistics of a meter from its stored readings and prices.",
       "fields": {
-        "meter": { "name": "Meter", "description": "The meter sensor." }
+        "meter": {
+          "name": "Meter",
+          "description": "The meter sensor."
+        }
       }
     }
   }
