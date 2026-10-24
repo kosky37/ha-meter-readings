@@ -1,0 +1,99 @@
+add_reading:
+  fields:
+    meter: &meter
+      required: true
+      selector:
+        entity:
+          filter:
+            integration: meter_readings
+            domain: sensor
+            device_class:
+              - gas
+              - water
+    value: &value
+      required: true
+      selector:
+        number:
+          min: 0
+          max: 999999999
+          step: any
+          mode: box
+    timestamp:
+      selector:
+        datetime:
+
+import_readings:
+  fields:
+    meter: *meter
+    readings:
+      required: true
+      selector:
+        text:
+          multiline: true
+    replace:
+      default: false
+      selector:
+        boolean:
+
+update_reading:
+  fields:
+    meter: *meter
+    timestamp:
+      required: true
+      selector:
+        datetime:
+    value:
+      selector:
+        number:
+          min: 0
+          max: 999999999
+          step: any
+          mode: box
+    new_timestamp:
+      selector:
+        datetime:
+
+delete_reading:
+  fields:
+    meter: *meter
+    timestamp:
+      required: true
+      selector:
+        datetime:
+
+get_readings:
+  fields:
+    meter: *meter
+
+rebuild_statistics:
+  fields:
+    meter: *meter
+
+set_price:
+  fields:
+    meter: *meter
+    price:
+      selector:
+        number:
+          min: 0
+          max: 100000
+          step: any
+          mode: box
+    factor:
+      selector:
+        number:
+          min: 0
+          max: 1000
+          step: any
+          mode: box
+    valid_from:
+      selector:
+        datetime:
+
+delete_price:
+  fields:
+    meter: *meter
+    valid_from:
+      required: true
+      selector:
+        datetime:

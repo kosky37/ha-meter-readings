@@ -1,0 +1,52 @@
+{
+  "entity": {
+    "sensor": {
+      "last_reading": {
+        "default": "mdi:calendar-clock"
+      },
+      "unit_price": {
+        "default": "mdi:cash"
+      },
+      "total_cost": {
+        "default": "mdi:cash-multiple"
+      }
+    },
+    "number": {
+      "new_reading": {
+        "default": "mdi:counter"
+      },
+      "price": {
+        "default": "mdi:cash-edit"
+      },
+      "factor": {
+        "default": "mdi:swap-horizontal"
+      }
+    }
+  },
+  "services": {
+    "add_reading": {
+      "service": "mdi:plus-circle-outline"
+    },
+    "import_readings": {
+      "service": "mdi:table-arrow-down"
+    },
+    "update_reading": {
+      "service": "mdi:pencil"
+    },
+    "delete_reading": {
+      "service": "mdi:delete"
+    },
+    "get_readings": {
+      "service": "mdi:format-list-numbered"
+    },
+    "rebuild_statistics": {
+      "service": "mdi:chart-line"
+    },
+    "set_price": {
+      "service": "mdi:cash-edit"
+    },
+    "delete_price": {
+      "service": "mdi:cash-remove"
+    }
+  }
+}

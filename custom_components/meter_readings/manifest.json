@@ -1,0 +1,17 @@
+{
+  "domain": "meter_readings",
+  "name": "Meter Readings",
+  "codeowners": [
+    "@kosky37"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "recorder"
+  ],
+  "documentation": "https://github.com/kosky37/ha-meter-readings",
+  "integration_type": "device",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/kosky37/ha-meter-readings/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}

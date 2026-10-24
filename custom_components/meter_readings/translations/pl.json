@@ -1,0 +1,212 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Dodaj licznik",
+        "description": "Utwórz licznik odczytywany ręcznie. Otrzyma statystyki długoterminowe zużycia i kosztów, których możesz użyć w panelu Energia i na kartach wykresu statystyk.",
+        "data": {
+          "name": "Nazwa",
+          "meter_type": "Rodzaj licznika",
+          "unit": "Jednostka",
+          "price_per": "Cena podawana"
+        },
+        "data_description": {
+          "name": "Na przykład Licznik gazu albo Licznik wody.",
+          "unit": "Jednostka widoczna na liczniku.",
+          "price_per": "Gaz jest zwykle rozliczany za kWh z użyciem współczynnika konwersji (kWh/m³) podanego na fakturze."
+        }
+      }
+    },
+    "error": {
+      "invalid_name": "Podaj nazwę zawierającą litery lub cyfry.",
+      "invalid_unit": "Ta jednostka nie pasuje do wybranego rodzaju licznika.",
+      "invalid_price_per": "Cena za kWh jest dostępna tylko dla liczników gazu mierzących objętość."
+    },
+    "abort": {
+      "already_configured": "Licznik o tej nazwie już istnieje."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "{name}",
+        "description": "Ostatni odczyt: {latest}. Zapisanych odczytów: {count}.\n\nAktualna cena: {price}.",
+        "menu_options": {
+          "add_reading": "Dodaj odczyt",
+          "edit_reading": "Popraw lub usuń odczyt",
+          "import_readings": "Importuj historyczne odczyty",
+          "add_price": "Ustaw cenę",
+          "edit_price": "Popraw lub usuń cenę",
+          "view_readings": "Pokaż odczyty i ceny"
+        }
+      },
+      "add_reading": {
+        "title": "Dodaj odczyt",
+        "description": "Ostatni odczyt: {latest}. Zmień datę, aby dodać starszy odczyt.",
+        "data": {
+          "value": "Stan licznika",
+          "timestamp": "Data odczytu"
+        }
+      },
+      "edit_reading": {
+        "title": "Popraw lub usuń odczyt",
+        "description": "Wybierz odczyt do zmiany.",
+        "data": {
+          "reading": "Odczyt"
+        }
+      },
+      "edit_selected": {
+        "title": "Popraw odczyt",
+        "description": "Edycja odczytu {reading}.",
+        "data": {
+          "value": "Stan licznika",
+          "timestamp": "Data odczytu",
+          "delete": "Usuń ten odczyt"
+        }
+      },
+      "import_readings": {
+        "title": "Importuj historyczne odczyty",
+        "description": "Jeden odczyt w wierszu: data z opcjonalną godziną, potem wartość. Przykłady:\n\n`2025-01-15 08:30, 1234.567`\n`2025-02-15;1250,1`\n`15.03.2025 1263.9`\n\nGodziny są w strefie czasowej Home Assistant. Odczyt z tą samą datą i godziną co istniejący zastępuje go.",
+        "data": {
+          "readings": "Odczyty",
+          "replace": "Zastąp wszystkie istniejące odczyty"
+        }
+      },
+      "add_price": {
+        "title": "Ustaw cenę",
+        "description": "Aktualna cena: {price}.\n\nCena obowiązuje od podanej daty do następnej ceny. Ustaw wcześniejszą datę, aby przeliczyć koszty wstecz. Zużycie sprzed pierwszej ceny jest liczone według pierwszej ceny.",
+        "data": {
+          "price": "Cena",
+          "factor": "Współczynnik konwersji",
+          "valid_from": "Obowiązuje od"
+        }
+      },
+      "edit_price": {
+        "title": "Popraw lub usuń cenę",
+        "description": "Wybierz cenę do zmiany.",
+        "data": {
+          "price": "Cena"
+        }
+      },
+      "edit_selected_price": {
+        "title": "Popraw cenę",
+        "description": "Edycja ceny {price}.",
+        "data": {
+          "price": "Cena",
+          "factor": "Współczynnik konwersji",
+          "valid_from": "Obowiązuje od",
+          "delete": "Usuń tę cenę"
+        }
+      },
+      "view_readings": {
+        "title": "Odczyty i ceny",
+        "description": "Koszt łącznie: {total_cost}.\n\nOstatnie {shown} z {count} odczytów. Dziennie to średnie zużycie od poprzedniego odczytu.\n\n{table}\n\n**Ceny**\n\n{prices}"
+      }
+    },
+    "error": {
+      "invalid": "{error}"
+    },
+    "abort": {
+      "saved": "{details}",
+      "no_readings": "Ten licznik nie ma jeszcze odczytów.",
+      "no_prices": "Ten licznik nie ma jeszcze cen.",
+      "not_loaded": "Licznik nie jest załadowany. Przeładuj integrację i spróbuj ponownie."
+    }
+  },
+  "selector": {
+    "meter_type": {
+      "options": {
+        "gas": "Gaz",
+        "water": "Woda"
+      }
+    },
+    "price_per": {
+      "options": {
+        "unit": "Za jednostkę licznika (np. za m³)",
+        "kwh": "Za kWh ze współczynnikiem konwersji"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "last_reading": { "name": "Ostatni odczyt" },
+      "unit_price": { "name": "Cena jednostkowa" },
+      "total_cost": { "name": "Koszt łącznie" }
+    },
+    "number": {
+      "new_reading": { "name": "Nowy odczyt" },
+      "price": { "name": "Cena" },
+      "factor": { "name": "Współczynnik konwersji" }
+    }
+  },
+  "services": {
+    "add_reading": {
+      "name": "Dodaj odczyt",
+      "description": "Zapisuje odczyt licznika. Bez daty używany jest bieżący czas.",
+      "fields": {
+        "meter": { "name": "Licznik", "description": "Sensor licznika." },
+        "value": { "name": "Wartość", "description": "Stan widoczny na liczniku." },
+        "timestamp": { "name": "Data", "description": "Kiedy odczytano licznik." }
+      }
+    },
+    "import_readings": {
+      "name": "Importuj odczyty",
+      "description": "Importuje wiele odczytów naraz, po jednym w wierszu jako data[ godzina], wartość.",
+      "fields": {
+        "meter": { "name": "Licznik", "description": "Sensor licznika." },
+        "readings": { "name": "Odczyty", "description": "Wiersze w rodzaju 2025-01-15 08:30, 1234.567." },
+        "replace": { "name": "Zastąp", "description": "Najpierw usuń wszystkie istniejące odczyty." }
+      }
+    },
+    "update_reading": {
+      "name": "Popraw odczyt",
+      "description": "Zmienia wartość lub datę istniejącego odczytu.",
+      "fields": {
+        "meter": { "name": "Licznik", "description": "Sensor licznika." },
+        "timestamp": { "name": "Data", "description": "Data i godzina odczytu do zmiany, z dokładnością do minuty." },
+        "value": { "name": "Nowa wartość", "description": "Poprawiona wartość." },
+        "new_timestamp": { "name": "Nowa data", "description": "Poprawiona data i godzina." }
+      }
+    },
+    "delete_reading": {
+      "name": "Usuń odczyt",
+      "description": "Usuwa odczyt.",
+      "fields": {
+        "meter": { "name": "Licznik", "description": "Sensor licznika." },
+        "timestamp": { "name": "Data", "description": "Data i godzina odczytu do usunięcia, z dokładnością do minuty." }
+      }
+    },
+    "set_price": {
+      "name": "Ustaw cenę",
+      "description": "Ustawia cenę od podanej daty. Cena z tą samą datą zostaje zastąpiona.",
+      "fields": {
+        "meter": { "name": "Licznik", "description": "Sensor licznika." },
+        "price": { "name": "Cena", "description": "Cena za jednostkę licznika albo za kWh dla liczników rozliczanych za kWh. Domyślnie poprzednia cena." },
+        "factor": { "name": "Współczynnik konwersji", "description": "kWh na jednostkę licznika, tylko dla liczników rozliczanych za kWh. Domyślnie poprzedni współczynnik." },
+        "valid_from": { "name": "Obowiązuje od", "description": "Od kiedy cena obowiązuje. Domyślnie teraz." }
+      }
+    },
+    "delete_price": {
+      "name": "Usuń cenę",
+      "description": "Usuwa cenę.",
+      "fields": {
+        "meter": { "name": "Licznik", "description": "Sensor licznika." },
+        "valid_from": { "name": "Obowiązuje od", "description": "Data początku ceny do usunięcia, z dokładnością do minuty." }
+      }
+    },
+    "get_readings": {
+      "name": "Pobierz odczyty",
+      "description": "Zwraca wszystkie zapisane odczyty i ceny licznika.",
+      "fields": {
+        "meter": { "name": "Licznik", "description": "Sensor licznika." }
+      }
+    },
+    "rebuild_statistics": {
+      "name": "Odbuduj statystyki",
+      "description": "Tworzy na nowo statystyki zużycia i kosztów licznika na podstawie zapisanych odczytów i cen.",
+      "fields": {
+        "meter": { "name": "Licznik", "description": "Sensor licznika." }
+      }
+    }
+  }
+}
