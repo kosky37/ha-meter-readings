@@ -441,7 +441,8 @@ class MeterData:
                 self.hass,
                 self._metadata(
                     self.cost_statistic_id,
-                    f"{self.entry.title} cost",
+                    f"{self.entry.title} "
+                    f"{'koszt' if self.hass.config.language == 'pl' else 'cost'}",
                     self.currency,
                 ),
                 _rounded(cost, 4),
